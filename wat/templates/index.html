@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for user in users %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{{ url_for('user_status', user_id=user.user_id) }}" class="pull-right">
+                    <span class="glyphicon glyphicon-pencil" style="color: #333;"></span>
+                </a>
+                <h3 class="panel-title">
+                    {{ user.name }}
+                    <small>{{ user.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+                </h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p class="text-muted"><em>What are you working on now?</em></p>
+                    {{ user.doing_now }}
+                </li>
+                <li class="list-group-item">
+                    <p class="text-muted"><em>What will you be working on later?</em></p>
+                    {{ user.doing_later }}
+                </li>
+                <li class="list-group-item">
+                    <p class="text-muted"><em>What are you not working on?</em></p>
+                    {{ user.not_doing }}
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}

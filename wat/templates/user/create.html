@@ -1,0 +1,26 @@
+{% from 'util.html' import render_field %}
+
+{% extends 'base.html' %}
+
+{% block body %}
+    {% set title = "Edit User" if edit else "Create User" %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ title }}</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ render_field(form.email, required="", autofocus="") }}
+                        {{ render_field(form.first_name, required="") }}
+                        {{ render_field(form.last_name, required="") }}
+                        <button type="submit" class="btn btn-primary">{{ title }}</button>
+                        <a href="{{ url_for('user_list') }}" class="btn btn-default">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

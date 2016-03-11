@@ -1,0 +1,18 @@
+{% macro nav_link(label, endpoint) %}
+    <li {% if endpoint == request.endpoint %}class="active"{% endif %}>
+        <a href="{{ url_for(endpoint, **kwargs) }}">{{ label }}</a>
+    </li>
+{% endmacro %}
+
+{% macro render_field(field) %}
+    <div class="form-group {% if field.errors %}has-error{% endif %}">
+        <label for="{{ field.id }}">{{ field.label.text }}</label>
+        {{ field(placeholder=field.label.text, class="form-control", **kwargs) }}
+        {% for error in field.errors %}
+            <p class="help-block">{{ error }}</p>
+        {% endfor %}
+        {% if field.description %}
+            <p class="help-block">{{ field.description }}</p>
+        {% endif %}
+    </div>
+{% endmacro %}

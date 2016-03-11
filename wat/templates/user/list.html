@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <a href="{{ url_for('user_create') }}" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add User</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if not users %}
+                <tr>
+                    <td colspan="2">No users found.</td>
+                </tr>
+            {% endif %}
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
